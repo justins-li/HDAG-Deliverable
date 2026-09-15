@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Thin Air Index — Meridian Air route screen</title>
+<title>Thin Air Index: Meridian Air route screen</title>
 <style>
   :root{
     color-scheme: light;
@@ -153,11 +153,11 @@
   </div>
 
   <div class="verdict">
-    <div><div class="lab">Top route</div><div class="val mono" id="vTop">—</div></div>
-    <div><div class="lab">JFK–MAN rank</div><div class="val mono" id="vRank">—</div></div>
+    <div><div class="lab">Top route</div><div class="val mono" id="vTop">…</div></div>
+    <div><div class="lab">JFK–MAN rank</div><div class="val mono" id="vRank">…</div></div>
     <div style="flex:1;min-width:210px">
       <div class="lab">Reading</div>
-      <div class="val" id="vRead" style="font-size:12px;font-weight:400;color:var(--ink-2)">—</div>
+      <div class="val" id="vRead" style="font-size:12px;font-weight:400;color:var(--ink-2)">…</div>
     </div>
   </div>
 
@@ -170,7 +170,7 @@
 
   <main>
     <div class="panel">
-      <div class="phead">Ranked candidates — click a row to inspect</div>
+      <div class="phead">Ranked candidates: click a row to inspect</div>
       <div class="scroll">
         <table>
           <thead><tr>
@@ -191,7 +191,7 @@
 
   <footer>
     Dials are percentile ranks within the 307-route pool, so they are unit-free and additive.
-    Source: USDOT T-100 International Report, <b>Oct–Dec only</b> — the one month window present
+    Source: USDOT T-100 International Report, <b>Oct–Dec only</b>. This is the one month window present
     in both the passenger and departure files in every year, 1990–2019. Totals are Q4 volumes,
     never annual ones.
   </footer>
@@ -202,45 +202,45 @@
   <div class="mbody">
     <div class="def">
       <div class="dt">The framing</div>
-      <p>Meridian gets <b>one rotation</b>, so maximising market size is the wrong objective —
-      the biggest markets are big <i>because</i> incumbents with slots, feed and scale already
+      <p>Meridian gets <b>one rotation</b>, so maximising market size is the wrong objective.
+      The biggest markets are big <i>because</i> incumbents with slots, feed and scale already
       hold them. Opportunity here is <b>demand that already exists, on planes that are already
       full, on a route nobody owns.</b> The four dials score exactly that.</p>
     </div>
     <div class="def">
-      <div class="dt">D — Demand <span>Q4 passengers, 2015–19</span></div>
+      <div class="dt">D · Demand <span>Q4 passengers, 2015–19</span></div>
       <p>Is the market real? Total Oct–Dec passengers over the five most recent years. A floor,
-      not a maximand — the top decile by volume was already cut, because the client refuses the
+      not a maximand. The top decile by volume was already cut, because the client refuses the
       biggest markets.</p>
     </div>
     <div class="def">
-      <div class="dt">G — Growth <span>vs 2010–14</span></div>
+      <div class="dt">G · Growth <span>vs 2010–14</span></div>
       <p>Is it getting bigger? Change in Q4 passengers against the prior five-year block. One
-      rotation is a long bet, so direction matters. Treat very large percentages with suspicion —
-      they come off small bases.</p>
+      rotation is a long bet, so direction matters. Treat very large percentages with suspicion.
+      They come off small bases.</p>
     </div>
     <div class="def">
-      <div class="dt">S — Strain <span>passengers ÷ departures</span></div>
+      <div class="dt">S · Strain <span>passengers ÷ departures</span></div>
       <p>Are the planes full? The data reports passengers and flights but never seats, so this is
       a load <i>proxy</i>, not a load factor. High strain means existing service runs full, so
       added capacity gets absorbed instead of starting a price war.</p>
     </div>
     <div class="def">
-      <div class="dt">R — Room <span>1 − HHI of carrier passenger shares</span></div>
+      <div class="dt">R · Room <span>1 − HHI of carrier passenger shares</span></div>
       <p>Can we get in? HHI is the sum of squared carrier shares: 1.00 is a monopoly, lower is
-      more fragmented. We use concentration rather than carrier count deliberately — two carriers
+      more fragmented. We use concentration rather than carrier count deliberately. Two carriers
       can be an open duopoly or a 97% fortress, and only HHI tells them apart. It is what keeps
       hub fortresses like ATL–AMS out of the shortlist.</p>
     </div>
     <div class="def">
-      <div class="dt">TAI — Thin Air Index <span>weighted mean of D, G, S, R</span></div>
+      <div class="dt">TAI · Thin Air Index <span>weighted mean of D, G, S, R</span></div>
       <p>Each dial is a percentile rank inside the candidate pool, then weighted by the sliders.
       The bar shows each route's score against the current leader. Percentile rather than z-score
       because the underlying distributions are badly right-skewed.</p>
     </div>
     <div class="def">
       <div class="dt">Carrier mix <span>donut, right-hand panel</span></div>
-      <p>Passenger share by carrier, 2015–19 — this is what HHI measures, drawn. One fat wedge is
+      <p>Passenger share by carrier, 2015–19. This is what HHI measures, drawn. One fat wedge is
       a fortress. Carriers past the top three are pooled as “Other”.</p>
     </div>
     <div class="def">
@@ -251,7 +251,7 @@
     <div class="def">
       <div class="dt">What this screen cannot see</div>
       <p>Slots, bilateral traffic rights, gate access and immunised joint ventures. That blind
-      spot is why the top-scoring route — LAX–HND, into slot-controlled Tokyo Haneda — is
+      spot is why the top-scoring route (LAX–HND, into slot-controlled Tokyo Haneda) is
       rejected by hand rather than by the index.</p>
     </div>
   </div>
@@ -344,9 +344,9 @@ function render(){
   const rec = scored.find(r => nm(r) === REC);
   $("vTop").textContent  = nm(scored[0]);
   $("vRank").innerHTML   = `<span class="flag">#${rec.rank}</span> / ${scored.length}`;
-  $("vRead").textContent = rec.rank === 1 ? "JFK–MAN leads — the recommendation holds."
+  $("vRead").textContent = rec.rank === 1 ? "JFK–MAN leads. The recommendation holds."
                          : rec.rank <= 3  ? "JFK–MAN still in contention."
-                         : "This weighting breaks our case — which is the honest sensitivity.";
+                         : "This weighting breaks our case. That is the honest sensitivity.";
 
   $("rows").innerHTML = scored.slice(0,40).map(r=>{
     const isRec = nm(r) === REC;

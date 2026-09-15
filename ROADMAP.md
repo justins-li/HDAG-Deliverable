@@ -1,44 +1,44 @@
-# ROADMAP — Meridian Air Route Recommendation
+# ROADMAP: Meridian Air Route Recommendation
 
 **Status: Phases 0–6 complete.** Re-read `CLAUDE.md` before each work session.
 
 ---
 
-## Phase 0 — Foundation & data trust ✅
+## Phase 0. Foundation & data trust ✅
 Loaded both CSVs, verified grain (zero duplicate keys on Year·Month·usg_apt·fg_apt·carrier),
 confirmed `Scheduled + Charter = Total`, audited month coverage.
 
-**Outcome — the load-bearing finding:** neither file contains full years.
+**Outcome, the load-bearing finding:** neither file contains full years.
 Passengers Sep–Dec → Aug–Dec (break at 2003); departures Oct–Dec → Sep–Dec (break at 2011).
 Everything downstream runs on a forced constant **Oct–Dec** window, the only one present in
 both files in every year. Details in `CLAUDE.md` §4.
 
 ---
 
-## Phase 1 — Planning: frame the problem ✅
+## Phase 1. Planning: frame the problem ✅
 **Opportunity = demand that already exists, on planes that are already full, on a route
-nobody owns.** Four dials — the **Thin Air Index**:
+nobody owns.** Four dials make up the **Thin Air Index**:
 
 | Dial | Question | Measure |
 |---|---|---|
-| D — Demand | Is the market real? | Q4 passengers 2015–19 |
-| G — Growth | Is it getting bigger? | vs 2010–14 |
-| S — Strain | Are the planes full? | passengers ÷ departures |
-| R — Room | Can we get in? | 1 − HHI of carrier shares |
+| D · Demand | Is the market real? | Q4 passengers 2015–19 |
+| G · Growth | Is it getting bigger? | vs 2010–14 |
+| S · Strain | Are the planes full? | passengers ÷ departures |
+| R · Room | Can we get in? | 1 − HHI of carrier shares |
 
 Each dial is a percentile rank within the candidate pool. SWOT is in the notebook and on
-slide 5; it is what justifies weighting S and R as heavily as D (no slots, no connecting feed).
+slide 2; it is what justifies weighting S and R as heavily as D (no slots, no connecting feed).
 
 ---
 
-## Phase 2 — Candidates → shortlist → one route ✅
+## Phase 2. Candidates → shortlist → one route ✅
 
 ```
 4,398  all airport pairs
   873  material & scheduled   (>=50k Q4 pax, all 5 years, >=80% scheduled)
-  785  niche                  (drop top decile by volume — client instruction)
+  785  niche                  (drop top decile by volume, client instruction)
   605  growing
-  307  contestable            (>=2 carriers, HHI <= 0.90 — removes hub fortresses)
+  307  contestable            (>=2 carriers, HHI <= 0.90, removes hub fortresses)
     5  shortlist
     1  JFK–MAN
 ```
@@ -49,40 +49,46 @@ cannot see a legal barrier. That override is stated openly rather than hidden by
 
 ---
 
-## Phase 3 — Execution: the dashboard ✅
-`dashboard/index.html` — self-contained, no server, no network. Four draggable dials,
+## Phase 3. Execution: the dashboard ✅
+`dashboard/index.html` is self-contained, no server, no network. Four draggable dials,
 live re-ranking of all 307 candidates, three presets.
 
 It does double duty: it *shows* the framework instead of asserting it, and it makes
-deliverable #6 discoverable — drag toward **size** and JFK–MAN falls to #24, which is
+deliverable #6 discoverable. Drag toward **size** and JFK–MAN falls to #24, which is
 precisely the honest answer to "what would change your mind."
 Verified to match the notebook's sensitivity table exactly (#2 equal / #1 capturability-led /
 #24 size-led).
 
 ---
 
-## Phase 4 — Assumptions, limitations, risks ✅
+## Phase 4. Assumptions, limitations, risks ✅
 Final notebook markdown cell: **4 assumptions, 6 limitations**, four failure modes, and the
 single finding that would overturn the recommendation (post-2019 evidence that Manchester
 capacity was restored). Requirement was ≥3 and ≥2.
 
 ---
 
-## Phase 5 — The deck ✅
-`deck.html` → `Meridian_Air_Route_Recommendation.pdf`, **5 slides** (the maximum):
+## Phase 5. The deck ✅
+`deck.html` → `Meridian_Air_Route_Recommendation.pdf`, a cover plus **5 content slides**.
+Dark ground, section strip, accent section titles, figures over progress bars, ring chart.
+Charts are re-rendered dark by `make_deck_figures.py`; the notebook keeps its light versions.
+If the cover is counted against the five-slide cap, delete that one section and nothing is lost.
 
-1. The framing — Thin Air Index, the four dials
-2. The funnel — 4,398 → 5, and why LAX–HND is rejected
-3. The recommendation — JFK–MAN and the Thomas Cook vacancy
-4. Sensitivity — the weighting table, dashboard link, what would change our mind
-5. SWOT + limitations, with deliberate white space
+1. The framing: why size is the wrong objective, the four dials, what ranking by size returns
+2. SWOT: the client's position, and why it sets the weights
+3. The funnel: 4,398 → 5, the shortlist with verdicts, and why LAX–HND is rejected
+4. The recommendation: JFK–MAN, the Thomas Cook vacancy, the arithmetic
+5. Sensitivity, assumptions, limitations, risks, and a pointer to the live screen
+
+Slides are built to be read cold by someone who was not in the room, so the limitations and
+assumptions are printed rather than left to the presenter.
 
 Three figures, all generated by the notebook and all load-bearing: the funnel, the capacity
 gap, and the strain/room scatter. Requirement was ≥2.
 
 ---
 
-## Phase 6 — Ship ✅
+## Phase 6. Ship ✅
 Notebook verified running clean top to bottom from a fresh kernel. PDF is 5 pages.
 Dashboard verified in a headless browser.
 
@@ -99,4 +105,4 @@ is a stated requirement.
 ## The recommendation, in one line
 **JFK ⇄ Manchester.** Thomas Cook's September 2019 collapse vacated 47% of a proven, full
 route; 26,235 Q4 passengers of demonstrated demand went unserved, which at 2018 load factors
-is **0.83 departures per day — almost exactly the single rotation Meridian has been funded for.**
+is **0.83 departures per day, almost exactly the single rotation Meridian has been funded for.**

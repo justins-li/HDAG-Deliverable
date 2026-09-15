@@ -7,167 +7,360 @@
   @page { size: 1280px 720px; margin: 0; }
   *{box-sizing:border-box;margin:0;padding:0}
   :root{
-    --ink:#0b0b0b; --ink2:#52514e; --ink3:#8b8981; --line:#e6e5e1;
+    --ink:#0b0b0b; --ink2:#4a4945; --ink3:#83817a; --line:#dcdbd6; --line2:#ecebe7;
     --blue:#2a78d6; --orange:#eb6834; --aqua:#1baf7a; --red:#e34948; --paper:#fcfcfb;
+    --tint:#f5f4f1;
   }
   body{background:#d8d7d2;color:var(--ink);
-       font:16px/1.5 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+       font:14px/1.44 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
        -webkit-font-smoothing:antialiased}
   .slide{width:1280px;height:720px;background:var(--paper);position:relative;
-         padding:64px 84px 72px;overflow:hidden;page-break-after:always;margin:0 auto 22px;
-         display:flex;flex-direction:column;justify-content:center}
+         padding:34px 46px 40px;overflow:hidden;page-break-after:always;margin:0 auto 20px;
+         display:flex;flex-direction:column}
   .slide:last-child{page-break-after:auto;margin-bottom:0}
-  .num{position:absolute;right:46px;bottom:30px;font-size:12px;color:var(--ink3);
+  .num{position:absolute;right:46px;bottom:14px;font-size:11px;color:var(--ink3);
        font-variant-numeric:tabular-nums}
-  .kicker{font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--orange);
-          font-weight:660;margin-bottom:16px}
-  h1{font-size:52px;line-height:1.06;letter-spacing:-.024em;font-weight:670}
-  h2{font-size:36px;line-height:1.12;letter-spacing:-.02em;font-weight:660}
-  .rule{height:3px;width:60px;background:var(--orange);margin:24px 0}
-  .big{font-size:24px;line-height:1.38;font-weight:600;letter-spacing:-.012em;max-width:40ch}
-  .sub{font-size:17px;color:var(--ink2);line-height:1.45;max-width:58ch;margin-top:14px}
+  .kicker{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);
+          font-weight:680}
+  h1{font-size:44px;line-height:1.02;letter-spacing:-.025em;font-weight:680;margin:5px 0 0}
+  h2{font-size:31px;line-height:1.06;letter-spacing:-.022em;font-weight:670;margin:5px 0 0}
+  .sub{font-size:15.5px;color:var(--ink2);line-height:1.34;margin-top:7px;max-width:88ch}
+  .sub b{color:var(--ink)}
+  .hr{height:1px;background:var(--line);margin:13px 0}
+
+  .row{display:grid;gap:26px}
+  .r55{grid-template-columns:1.22fr .78fr}
+  .r50{grid-template-columns:1fr 1fr}
+  .r3{grid-template-columns:1fr 1fr 1fr;gap:20px}
+  .r65{grid-template-columns:1.38fr .62fr}
+  .s3 td{padding:6.8px 7px}
+  .s3 ul.pl li{margin-bottom:8px}
+  .grow{flex:1;min-height:0;padding-bottom:12px}
+  figure{margin:0}
   figure img{width:100%;display:block}
 
-  .dials{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:34px}
-  .dial{border-top:2px solid var(--blue);padding-top:12px}
-  .dial .ltr{font-size:13px;font-weight:700;letter-spacing:.1em;color:var(--blue)}
-  .dial .q{font-size:17px;font-weight:600;margin-top:5px;letter-spacing:-.008em}
-  .dial .m{font-size:13px;color:var(--ink3);margin-top:4px}
+  p.t{font-size:13.4px;color:var(--ink2);line-height:1.42;margin-bottom:8px}
+  p.t b{color:var(--ink)}
+  .lab{font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink3);
+       font-weight:680;margin-bottom:6px}
 
-  .swot{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:8px}
-  .quad{border-top:2px solid var(--line);padding-top:13px}
-  .quad h4{font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;margin-bottom:10px;
-           font-weight:680}
+  table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+  th{text-align:left;font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;
+     color:var(--ink3);font-weight:660;padding:4px 7px;border-bottom:1.5px solid var(--ink)}
+  td{font-size:12.8px;padding:4.5px 7px;border-bottom:1px solid var(--line2);
+     line-height:1.32;vertical-align:top}
+  td.n,th.n{text-align:right;white-space:nowrap}
+  tr.hl td{background:#fdefe8;font-weight:660;color:var(--ink)}
+  tr.dim td{color:var(--ink3)}
+  .dialname{font-weight:680;white-space:nowrap}
+  .dialname i{font-style:normal;color:var(--blue);font-weight:700}
+
+  .box{border:1px solid var(--line);border-left:3px solid var(--orange);background:var(--tint);
+       padding:10px 13px}
+  .box.blue{border-left-color:var(--blue)}
+  .box.red{border-left-color:var(--red)}
+  .box .h{font-weight:680;font-size:13px;margin-bottom:3px}
+  .box p{font-size:12.4px;color:var(--ink2);line-height:1.38}
+  .box p b{color:var(--ink)}
+
+  .swot{display:grid;grid-template-columns:1fr 1fr;gap:14px 22px}
+  .quad{border-top:2px solid var(--line);padding-top:9px}
+  .quad h4{font-size:10px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:7px;
+           font-weight:690}
   .quad.s{border-top-color:var(--aqua)} .quad.s h4{color:var(--aqua)}
   .quad.w{border-top-color:var(--orange)} .quad.w h4{color:var(--orange)}
   .quad.o{border-top-color:var(--blue)} .quad.o h4{color:var(--blue)}
   .quad.t{border-top-color:var(--red)} .quad.t h4{color:var(--red)}
-  .quad li{font-size:15px;color:var(--ink2);margin-bottom:6px;line-height:1.35;list-style:none}
+  .quad li{font-size:13px;color:var(--ink2);margin-bottom:4px;line-height:1.3;list-style:none;
+           padding-left:12px;position:relative}
+  .quad li::before{content:"";position:absolute;left:0;top:7px;width:4px;height:4px;
+                   border-radius:50%;background:var(--line)}
+  .quad.s li::before{background:var(--aqua)} .quad.w li::before{background:var(--orange)}
+  .quad.o li::before{background:var(--blue)} .quad.t li::before{background:var(--red)}
 
-  .cols{display:grid;gap:44px;align-items:center}
-  .c25{grid-template-columns:1.15fr .85fr}
-  .stat{display:flex;gap:44px;margin:26px 0 0}
-  .stat .n{font-size:52px;font-weight:680;letter-spacing:-.025em;line-height:1}
-  .stat .n.hl{color:var(--orange)}
-  .stat .l{font-size:14px;color:var(--ink3);margin-top:7px;max-width:17ch;line-height:1.35}
+  ul.pl{list-style:none}
+  ul.pl li{font-size:12.8px;color:var(--ink2);line-height:1.36;margin-bottom:5px;
+           padding-left:13px;position:relative}
+  ul.pl li::before{content:"";position:absolute;left:0;top:7px;width:4px;height:4px;
+                   border-radius:50%;background:var(--orange)}
+  ul.pl li b{color:var(--ink)}
 
-  table{width:100%;border-collapse:collapse;font-size:17px;font-variant-numeric:tabular-nums}
-  th,td{text-align:right;padding:9px 10px;border-bottom:1px solid var(--line)}
-  th{color:var(--ink3);font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-weight:600}
-  th:first-child,td:first-child{text-align:left}
-  tr.hl td{font-weight:670;color:var(--ink)}
-  tr.hl td:first-child{color:var(--orange)}
-  .note{font-size:15px;color:var(--ink2);line-height:1.45}
-  .note b{color:var(--ink)}
+  .stats{display:flex;gap:30px;margin-top:2px}
+  .stats .n{font-size:40px;font-weight:690;letter-spacing:-.028em;line-height:1}
+  .stats .n.hl{color:var(--orange)}
+  .stats .l{font-size:11.5px;color:var(--ink3);margin-top:4px;line-height:1.28;max-width:18ch}
+
+  .web{border:1px dashed var(--blue);background:#f2f7fd;padding:9px 12px;margin-top:9px}
+  .web .h{font-weight:680;font-size:12.4px;color:var(--blue);margin-bottom:2px}
+  .web p{font-size:11.8px;color:var(--ink2);line-height:1.34}
+  .web code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11.5px;color:var(--ink)}
+  .foot{font-size:10.8px;color:var(--ink3);line-height:1.36;border-top:1px solid var(--line);
+        padding-top:7px;margin-top:auto}
 </style>
 </head>
 <body>
 
-<!-- 1. THE IDEA ------------------------------------------------------ -->
+<!-- 1. THE FRAMING --------------------------------------------------- -->
 <section class="slide">
   <div class="kicker">Meridian Air · Route Network Strategy</div>
   <h1>Fly where the air is thin.</h1>
-  <div class="rule"></div>
-  <p class="big">Opportunity is demand that already exists, on planes that are already full,
-  on a route nobody owns.</p>
-  <div class="dials">
-    <div class="dial"><div class="ltr">D</div><div class="q">Is the market real?</div>
-      <div class="m">Q4 passengers, 2015–19</div></div>
-    <div class="dial"><div class="ltr">G</div><div class="q">Is it getting bigger?</div>
-      <div class="m">versus 2010–14</div></div>
-    <div class="dial"><div class="ltr">S</div><div class="q">Are the planes full?</div>
-      <div class="m">passengers ÷ departures</div></div>
-    <div class="dial"><div class="ltr">R</div><div class="q">Can we get in?</div>
-      <div class="m">1 − HHI of carrier shares</div></div>
+  <p class="sub">The board funded <b>one rotation</b> and refused the biggest markets. Ranking by
+  volume returns JFK to Heathrow, which is slot-controlled and run as a four-carrier joint
+  venture. <b>Size is evidence that demand is already served.</b> So we score capturability.</p>
+  <div class="hr"></div>
+  <div class="row r55 grow">
+    <div>
+      <div class="lab">The definition</div>
+      <p style="font-size:20px;font-weight:650;line-height:1.28;letter-spacing:-.012em">
+      Opportunity is demand that already exists, on planes that are already full, on a route
+      nobody owns.</p>
+      <div class="box blue" style="margin-top:14px">
+        <div class="h">Why each dial is a percentile, not a raw number</div>
+        <p>Passengers, a growth rate, people per flight and a concentration score cannot be added
+        together. Ranking each route 0 to 100 within the candidate pool makes four different units
+        additive. We rank rather than standardise because airline traffic is heavily right-skewed,
+        and a handful of enormous routes would otherwise dominate any average.</p>
+      </div>
+      <div class="box" style="margin-top:9px">
+        <div class="h">Room uses concentration, not a count of airlines</div>
+        <p>Two carriers can be an open duopoly or a 97% fortress. Counting cannot tell them apart;
+        <b>HHI</b> can. That single choice is what keeps Delta's ATL–AMS and DTW–AMS hub fortresses
+        off the shortlist despite their thin carrier counts.</p>
+      </div>
+      <div class="lab" style="margin-top:14px">What ranking by size actually returns · all three sit far above our volume cut</div>
+      <table>
+        <tr><th>Route</th><th class="n">Q4 passengers 2015–19</th><th>Why it is not an option</th></tr>
+        <tr class="dim"><td>JFK–LHR</td><td class="n">3,799,106</td>
+            <td>Heathrow is slot-controlled and run as a transatlantic joint venture</td></tr>
+        <tr class="dim"><td>HNL–NRT</td><td class="n">2,044,325</td>
+            <td>Mature leisure corridor held by the Japanese and US majors</td></tr>
+        <tr class="dim"><td>LAX–LHR</td><td class="n">1,879,683</td>
+            <td>Heathrow again, same wall</td></tr>
+      </table>
+    </div>
+    <div>
+      <div class="lab">The four dials · the Thin Air Index</div>
+      <table>
+        <tr><th>Dial</th><th>Measure</th></tr>
+        <tr><td class="dialname"><i>D</i> Demand<br><span style="font-weight:400;color:var(--ink3);font-size:11.5px">Is the market real?</span></td>
+            <td>Q4 passengers 2015–19.<br>A single aircraft cannot create demand from nothing.</td></tr>
+        <tr><td class="dialname"><i>G</i> Growth<br><span style="font-weight:400;color:var(--ink3);font-size:11.5px">Is it getting bigger?</span></td>
+            <td>Change against 2010–14.<br>One rotation is a multi-year commitment.</td></tr>
+        <tr><td class="dialname"><i>S</i> Strain<br><span style="font-weight:400;color:var(--ink3);font-size:11.5px">Are the planes full?</span></td>
+            <td>Passengers ÷ departures.<br>Full planes absorb new seats. Empty ones start fare wars.</td></tr>
+        <tr><td class="dialname"><i>R</i> Room<br><span style="font-weight:400;color:var(--ink3);font-size:11.5px">Can we get in?</span></td>
+            <td>1 − HHI of carrier shares.<br>One aircraft cannot dislodge an entrenched incumbent.</td></tr>
+      </table>
+      <div class="box blue" style="margin-top:14px">
+        <div class="h">How the four combine</div>
+        <p>The <b>Thin Air Index</b> is the weighted mean of the four percentile ranks. Equal
+        weights are a starting prior, not a claim: we had no basis for asserting that growth
+        matters 1.4 times as much as strain, so we started neutral and then tested every
+        alternative. Slide 5 shows what moving them does to the answer.</p>
+      </div>
+    </div>
   </div>
+  <p class="foot"><b>Data note.</b> The source files are not full years. Passengers cover Sep–Dec
+  then Aug–Dec; departures Oct–Dec then Sep–Dec. Every figure in this deck uses a forced constant
+  <b>October to December</b> window, the only one present in both files in every year. Totals are
+  Q4 volumes, never annual.</p>
   <div class="num">1 / 5</div>
 </section>
 
-<!-- 2. SWOT ---------------------------------------------------------- -->
+<!-- 2. THE CLIENT ---------------------------------------------------- -->
 <section class="slide">
   <div class="kicker">Where Meridian stands</div>
   <h2>One aircraft. No slots. No feed.</h2>
-  <p class="sub">The weaknesses are the reason we score capturability instead of size.</p>
-  <div class="swot">
+  <p class="sub">This is not background. The weaknesses on the right are the reason
+  <b>Strain</b> and <b>Room</b> carry as much weight as raw demand: an airline with no slot
+  portfolio and no connecting passengers has to win on capturability or not at all.</p>
+  <div class="hr"></div>
+  <div class="swot grow">
     <div class="quad s"><h4>Strengths</h4><ul>
-      <li>Capital in hand</li>
-      <li>No legacy network to defend</li>
-      <li>Small, reversible commitment</li></ul></div>
+      <li>Two profitable years, capital in hand</li>
+      <li>No legacy network to defend, free to pick optimally</li>
+      <li>One rotation is a small, reversible commitment</li>
+      <li>No hub to protect, so no cannibalisation</li></ul></div>
     <div class="quad w"><h4>Weaknesses</h4><ul>
-      <li>No connecting passengers</li>
-      <li>No slots at busy airports</li>
-      <li>No alliance, no brand abroad</li></ul></div>
+      <li>No connecting feed. The route must work on its own traffic</li>
+      <li>No slot portfolio at constrained airports</li>
+      <li>No alliance, no joint venture, no corporate contracts</li>
+      <li>Unknown brand in every foreign market</li></ul></div>
     <div class="quad o"><h4>Opportunities</h4><ul>
-      <li>Failed carriers leave proven demand</li>
-      <li>Second cities are unslotted</li>
-      <li>Monopoly routes price high</li></ul></div>
+      <li>Failed carriers vacate <b>proven</b> demand, not speculative demand</li>
+      <li>Secondary gateways are unslotted and under-served</li>
+      <li>Monopoly routes price high, which leaves margin to attack</li>
+      <li>Point-to-point leisure needs no hub feed</li></ul></div>
     <div class="quad t"><h4>Threats</h4><ul>
-      <li>Incumbent adds frequency</li>
-      <li>The gap may already be filled</li>
-      <li>Leisure routes yield thin</li></ul></div>
+      <li>Incumbent adds frequency and squeezes the entrant</li>
+      <li>A vacated gap may already have been backfilled</li>
+      <li>Leisure markets skew thin on premium cabins and yield</li>
+      <li>One route means zero diversification</li></ul></div>
+  </div>
+  <div class="row r50" style="margin-top:14px">
+    <div class="box red"><div class="h">What this rules out</div>
+      <p>Slot-controlled airports such as Heathrow and Tokyo Haneda. Hub fortresses where one
+      carrier holds the traffic. Anything that only works with connecting passengers.</p></div>
+    <div class="box"><div class="h">What this points toward</div>
+      <p>Second-city gateways, routes a carrier has just exited, and markets where the planes
+      still fly full despite thin service.</p></div>
   </div>
   <div class="num">2 / 5</div>
 </section>
 
 <!-- 3. THE FUNNEL ---------------------------------------------------- -->
 <section class="slide">
-  <div class="kicker">The funnel</div>
-  <h2>4,398 routes to 5 finalists.</h2>
-  <div class="cols c25" style="margin-top:26px">
-    <figure><img src="fig_funnel.png" alt="Funnel from 4,398 airport pairs to a shortlist of five"></figure>
+  <div class="kicker">From every route to five</div>
+  <h2>4,398 airport pairs to 5 finalists.</h2>
+  <div class="row r65 grow s3" style="margin-top:13px;align-items:start">
     <div>
-      <p class="note" style="margin-bottom:22px"><b>Four cuts.</b> Real and repeating.
-      Not the biggest. Growing. Not already owned.</p>
-      <p class="note"><b>The index ranks LAX–HND first. We reject it.</b> Haneda slots are
-      allocated between governments. Our measure sees competition, not legal walls.</p>
+      <figure><img src="fig_funnel.png" alt="Funnel from 4,398 airport pairs to a shortlist of five"></figure>
+      <div class="lab" style="margin-top:13px">The shortlist, equal weights</div>
+      <table>
+        <tr><th>Route</th><th class="n">TAI</th><th class="n">Q4 pax</th><th class="n">Pax/dep</th>
+            <th class="n">HHI</th><th>Verdict</th></tr>
+        <tr class="dim"><td>LAX–HND</td><td class="n">89.1</td><td class="n">562,315</td>
+            <td class="n">220</td><td class="n">0.34</td><td>Rejected, slots</td></tr>
+        <tr class="hl"><td>JFK–MAN</td><td class="n">87.9</td><td class="n">363,619</td>
+            <td class="n">235</td><td class="n">0.28</td><td>Recommended</td></tr>
+        <tr><td>DEN–CUN</td><td class="n">82.2</td><td class="n">540,816</td><td class="n">146</td>
+            <td class="n">0.34</td><td>No catalyst</td></tr>
+        <tr><td>SEA–ICN</td><td class="n">80.6</td><td class="n">483,764</td><td class="n">178</td>
+            <td class="n">0.34</td><td>Majors entrenched</td></tr>
+        <tr><td>GUM–PUS</td><td class="n">79.9</td><td class="n">318,908</td><td class="n">142</td>
+            <td class="n">0.28</td><td>Growth off a small base</td></tr>
+      </table>
+    </div>
+    <div>
+      <div class="lab">The four cuts</div>
+      <ul class="pl">
+        <li><b>Material and scheduled.</b> At least 50,000 Q4 passengers, present in all five
+        years, at least 80% scheduled. One rotation needs a repeating market, not charters.</li>
+        <li><b>Niche.</b> Drop the largest 10% by volume, above 595,034 Q4 passengers. This is the
+        client's instruction applied as a rule, not a finding.</li>
+        <li><b>Growing.</b> Demand rising against 2010–14.</li>
+        <li><b>Contestable.</b> At least two carriers and HHI at or below 0.90. This is the cut
+        that removes the hub fortresses.</li>
+      </ul>
+      <div class="box red" style="margin-top:13px">
+        <div class="h">The index shortlists. It does not decide.</div>
+        <p><b>The Thin Air Index ranks LAX–HND first. We reject it.</b> Tokyo Haneda's US slots are
+        allocated government to government under the bilateral treaty and held by Delta, United,
+        American and ANA. Room measures <i>concentration</i> only, so three majors splitting a
+        route evenly reads as healthy competition when it is a closed shop. The seats are not
+        expensive, they are legally unobtainable.</p>
+        <p style="margin-top:6px">We overrode the model using knowledge the data does not contain,
+        and labelled the override rather than retuning weights until our preferred answer won.</p>
+      </div>
+      <p class="t" style="margin-top:12px;font-size:12.4px"><b>Only one finalist has a catalyst.</b>
+      The other four are healthy but static: good demand, full planes, and no particular reason
+      that <i>now</i> is the moment to enter.</p>
     </div>
   </div>
+  <p class="foot"><b>The funnel is reversible.</b> Every cut and threshold is logged in the
+  notebook and reproducible from a clean kernel. The 302 contestable routes that did not reach
+  the shortlist stay scored and rankable in the live screen, so any stage can be reopened and the
+  thresholds moved.</p>
   <div class="num">3 / 5</div>
 </section>
 
 <!-- 4. THE RECOMMENDATION -------------------------------------------- -->
 <section class="slide">
   <div class="kicker">The recommendation</div>
-  <h2>JFK ⇄ Manchester.</h2>
-  <div class="cols c25" style="margin-top:22px">
+  <h2>JFK ⇄ Manchester. The reason is dated.</h2>
+  <p class="sub">Manchester is the United Kingdom's second gateway: the same national market as
+  Heathrow, <b>without the slot fight Meridian cannot win.</b> It is also the only finalist with
+  a catalyst.</p>
+  <div class="hr"></div>
+  <div class="row r55 grow">
     <figure><img src="fig_gap.png" alt="JFK to Manchester Q4 passengers by carrier, 2014 to 2019"></figure>
     <div>
-      <p class="note"><b>Thomas Cook collapsed in September 2019.</b> It carried 47% of this
-      route. The seats went. The demand did not.</p>
-      <div class="stat">
-        <div><div class="n">26,235</div><div class="l">passengers left unserved</div></div>
-        <div><div class="n hl">0.83</div><div class="l">flights a day to carry them</div></div>
+      <div class="box">
+        <div class="h">Thomas Cook collapsed in September 2019</div>
+        <p>It carried <b>38,749 Q4 passengers in 2018, or 47% of the entire route.</b> Virgin
+        Atlantic backfilled part of it and no more. Read the third column below: even after losing
+        nearly half the seats, the remaining flights still went out with 320 people aboard.
+        <b>The demand did not evaporate. It went unserved.</b></p>
       </div>
-      <p class="note" style="margin-top:24px">That is one rotation. Exactly what the board
-      funded.</p>
+      <table style="margin-top:10px">
+        <tr><th></th><th class="n">Q4 passengers</th><th class="n">Departures</th>
+            <th class="n">Pax per departure</th></tr>
+        <tr><td>2018</td><td class="n">82,512</td><td class="n">240</td><td class="n">343.8</td></tr>
+        <tr><td>2019</td><td class="n">56,277</td><td class="n">176</td><td class="n">319.8</td></tr>
+        <tr class="hl"><td>Shortfall</td><td class="n">26,235</td><td class="n">64</td>
+            <td class="n">still full</td></tr>
+      </table>
+      <div class="stats" style="margin-top:12px">
+        <div><div class="n">26,235</div><div class="l">Q4 passengers of proven demand, unserved</div></div>
+        <div><div class="n hl">0.83</div><div class="l">departures per day needed to carry them</div></div>
+      </div>
+      <p class="t" style="margin-top:11px"><b>26,235 ÷ 343.8 per flight = 76 flights over 92
+      days.</b> The vacated demand is almost exactly one daily rotation, which is precisely the
+      capacity the board has funded. We are not making a market or starting a price war. We are
+      occupying a seat someone else left.</p>
     </div>
   </div>
   <div class="num">4 / 5</div>
 </section>
 
-<!-- 5. WHERE IT BREAKS ----------------------------------------------- -->
+<!-- 5. SENSITIVITY, LIMITS, RISK ------------------------------------- -->
 <section class="slide">
-  <div class="kicker">Where this breaks</div>
+  <div class="kicker">Sensitivity, limits and risk</div>
   <h2>The weighting is the argument.</h2>
-  <div class="cols c25" style="margin-top:24px;align-items:start">
+  <p class="sub">JFK–MAN wins outright whenever the score reflects Meridian's real constraints.
+  Weight raw size instead and it collapses to 24th. <b>That fragility is the finding, not a flaw
+  we are hiding.</b></p>
+  <div class="hr"></div>
+  <div class="row r55">
     <div>
       <table>
-        <thead><tr><th>Weighted toward</th><th>JFK–MAN</th></tr></thead>
-        <tbody>
-          <tr class="hl"><td>Capturability</td><td>#1</td></tr>
-          <tr class="hl"><td>Full planes</td><td>#1</td></tr>
-          <tr class="hl"><td>Room to enter</td><td>#1</td></tr>
-          <tr><td>Equal</td><td>#2</td></tr>
-          <tr><td>Market size</td><td>#24</td></tr>
-        </tbody>
+        <tr><th>Weighted toward</th><th>Top route</th><th class="n">JFK–MAN</th></tr>
+        <tr class="hl"><td>Capturability (Strain + Room)</td><td>JFK–MAN</td><td class="n">#1</td></tr>
+        <tr class="hl"><td>Full planes (Strain)</td><td>JFK–MAN</td><td class="n">#1</td></tr>
+        <tr class="hl"><td>Room to enter</td><td>JFK–MAN</td><td class="n">#1</td></tr>
+        <tr><td>Equal, our prior</td><td>LAX–HND</td><td class="n">#2</td></tr>
+        <tr><td>Growth</td><td>LAX–HND</td><td class="n">#2</td></tr>
+        <tr><td>Market size</td><td>LAX–HND</td><td class="n">#24</td></tr>
       </table>
+      <div class="web">
+        <div class="h">Test it yourself: the live route screen</div>
+        <p>All 307 contestable routes, four draggable weights, instant re-ranking. Click any
+        route for its carrier mix and Q4 history. Runs offline, no install.
+        <br><code>dashboard/index.html</code> · launched from the notebook</p>
+      </div>
+    </div>
+    <figure><img src="fig_scatter.png" alt="Shortlist plotted by room to enter against strain"></figure>
+  </div>
+  <div class="row r3 grow" style="margin-top:14px">
+    <div>
+      <div class="lab">Assumptions</div>
+      <ul class="pl">
+        <li>Q4 <b>ordering</b> approximates annual ordering. We never claim Q4 volume is annual volume.</li>
+        <li>Passengers ÷ departures is a usable load proxy. The data has no seat counts.</li>
+        <li>Vacated demand persists rather than permanently rerouting via LHR, DUB or AMS.</li>
+      </ul>
     </div>
     <div>
-      <p class="note" style="margin-bottom:24px"><b>What would change our mind.</b> Evidence
-      that Manchester capacity was restored after 2019. The data stops three months after the
-      gap opened.</p>
-      <p class="note"><b>What we cannot see.</b> No summer in the data. No revenue, only
-      passengers. Slots and traffic rights are invisible to the index.</p>
+      <div class="lab">Limitations</div>
+      <ul class="pl">
+        <li><b>No summer in the data.</b> Manchester leans leisure, so its true demand is likely
+        understated here.</li>
+        <li><b>No revenue anywhere.</b> We count people, never money. Full planes at low fares do
+        not pay for a widebody.</li>
+        <li><b>Five-year HHI hides the present.</b> JFK–MAN scores 0.28 across 2015–19, but in
+        2019 Virgin is the only carrier. We would enter a monopoly.</li>
+        <li>Airport pair is not a true origin and destination market.</li>
+      </ul>
+    </div>
+    <div>
+      <div class="lab">Risks, and what would change our mind</div>
+      <ul class="pl">
+        <li><b>Virgin responds.</b> It has the aircraft and the incentive to refill the gap.</li>
+        <li><b>Yield, not volume.</b> A leisure gateway may not support the fares.</li>
+        <li><b>The single finding that kills this:</b> post-2019 schedule data showing Manchester
+        capacity restored to 2018 levels. Our data stops in December 2019, three months after the
+        gap opened. We can watch it open. We cannot watch it close.</li>
+      </ul>
     </div>
   </div>
   <div class="num">5 / 5</div>

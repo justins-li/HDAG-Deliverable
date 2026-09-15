@@ -69,7 +69,10 @@ capacity was restored). Requirement was ≥3 and ≥2.
 ---
 
 ## Phase 5. The deck ✅
-`deck.html` → `Meridian_Air_Route_Recommendation.pdf`, **5 slides** (the maximum):
+`deck.html` → `Meridian_Air_Route_Recommendation.pdf`, a cover plus **5 content slides**.
+Dark ground, section strip, accent section titles, figures over progress bars, ring chart.
+Charts are re-rendered dark by `make_deck_figures.py`; the notebook keeps its light versions.
+If the cover is counted against the five-slide cap, delete that one section and nothing is lost.
 
 1. The framing: why size is the wrong objective, the four dials, what ranking by size returns
 2. SWOT: the client's position, and why it sets the weights

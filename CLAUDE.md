@@ -1,4 +1,4 @@
-# CLAUDE.md — working notes ("soul document")
+# CLAUDE.md: working notes ("soul document")
 
 **Read this before touching the deliverable.**
 
@@ -11,7 +11,7 @@ quietly contradicted two sessions from now.
 ## 1. The project
 
 Route network strategy for **Meridian Air**, a mid-sized international airline. After two
-profitable years the board has funded **exactly one** new US↔international route — one aircraft
+profitable years the board has funded **exactly one** new US↔international route, one aircraft
 rotation's worth of capacity. The question is which route, and what the case for it is.
 
 The client has been explicit: **do not recommend the biggest markets.** They already know the
@@ -26,24 +26,24 @@ so the notebook is the entry point to everything else.
 
 ## 2. How the work gets decided
 
-Justin is the last mirror — the final reader of what the data says and the one who carries the
+Justin is the last mirror: the final reader of what the data says and the one who carries the
 conclusions forward and answers for them. That is a recognition, not a gate. It doesn't mean
 deferring every judgment call to him or laying out menus instead of answers.
 
 So: build and decide. Pick the framing, choose the weights, commit to a route, write the
 narrative. Where a call is genuinely contestable, make it anyway and say plainly what would
-overturn it — that is more useful to him than an unresolved option set, and it is the part he
+overturn it. That is more useful to him than an unresolved option set, and it is the part he
 can actually push back on.
 
 What makes this work good, roughly in order:
 
 1. **The framing.** There is no given target variable. Deciding what "opportunity" means, and
-   defending it, is the substance — everything downstream is mechanics.
+   defending it, is the substance. Everything downstream is mechanics.
 2. **Honest reasoning.** Be specific about what the data cannot say. A limitation that names a
    real consequence beats a vague one.
 3. **Support.** The recommendation has to follow from what was actually computed, not from what
    sounds good. If the index ranks something else first, say so and explain the override.
-4. **Clarity**, then **code quality**. In that order — the thinking is the product.
+4. **Clarity**, then **code quality**. In that order. The thinking is the product.
 
 ## 3. Absolute rules
 
@@ -51,7 +51,7 @@ What makes this work good, roughly in order:
    computation over the provided CSVs, or to a cited external source with a URL.
 2. **No placeholder or illustrative data.** If a number isn't computed yet, leave it blank and
    say so.
-3. **Leave the notebook's original prompt cells intact** — the title, the problem statement, the
+3. **Leave the notebook's original prompt cells intact:** the title, the problem statement, the
    data description, the Part 1/2/3 headers, the assumptions heading and the closing section.
    Don't delete or reword them; add cells around them freely.
 4. **The notebook must run top to bottom** from a clean kernel.
@@ -60,12 +60,12 @@ What makes this work good, roughly in order:
 ## 4. Data facts established (do not re-derive, do not contradict)
 
 Source: USDOT T-100 International Report, via `https://github.com/AnmayG/f24-hdag-data`
-(that repo also holds unrelated course datasets — ignore all but the two `International_Report_*`
+(that repo also holds unrelated course datasets, so ignore all but the two `International_Report_*`
 files).
 
 - Both files: **250,000 rows**, 16 columns, **1990–2019**.
 - `Scheduled + Charter == Total` holds exactly in both files.
-- `carriergroup` ∈ {0, 1} — 0 is foreign carriers, 1 is US carriers.
+- `carriergroup` ∈ {0, 1}. 0 is foreign carriers, 1 is US carriers.
 - `type` is constant per file ("Departures" / "Passengers").
 - `carrier` has nulls: 708 (departures), 947 (passengers).
 - Grain is confirmed: zero duplicate keys on Year · Month · `usg_apt` · `fg_apt` · `carrier`.
@@ -94,7 +94,7 @@ Consequences that have to be handled explicitly:
    true US international figure several times that. Never present these as annual volumes
    without the caveat.
 
-**The working choice:** everything runs on a forced constant **Oct–Dec** window — the one window
+**The working choice:** everything runs on a forced constant **Oct–Dec** window, the one window
 present in both files in every year, which removes the step artifacts and makes the two files
 joinable. It costs the summer peak, which is a real and stated limitation.
 
@@ -117,7 +117,7 @@ route nobody owns.* Scored as the **Thin Air Index**: D (demand) · G (growth) �
 | Equivalent capacity | 76 departures / 92 days = **0.83 per day ≈ one rotation** |
 
 **TAI ranks LAX–HND first; JFK–MAN second.** LAX–HND is rejected *by hand* because Haneda's US
-slots are allocated government-to-government — a barrier "Room" cannot see, since it measures
+slots are allocated government-to-government, a barrier "Room" cannot see, since it measures
 concentration only. **Never present JFK–MAN as the top-scoring route.** It ranks #1 only under
 Strain-led, Room-led or capturability-led weightings; #2 on equal weights; **#24 size-led.**
 That fragility is the sensitivity story, not something to hide.
@@ -132,5 +132,5 @@ is 1.00** (Virgin Atlantic monopoly), so the route being entered is a monopoly t
 - **Short, sweet and creative** over sprawling. One sharp idea executed well beats five
   half-ideas.
 - Flag uncertainty rather than smoothing it over.
-- Notebook cells merge badly — git matches them by position, so a stale output can land on a
+- Notebook cells merge badly. Git matches them by position, so a stale output can land on a
   cell whose source has since changed. Check outputs after any merge.

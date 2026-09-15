@@ -29,8 +29,12 @@ jupyter notebook HDAG_Case_Team_Deliverable.ipynb   # run all
 Cell 5 clones the data into `f24-hdag-data/`. The notebook writes the three figures the deck
 uses, so run it before re-rendering the deck.
 
-**The dashboard needs nothing** — no server, no network, no build. Open
-`dashboard/index.html` in any browser, or:
+**The notebook is the single entry point.** Its "interactive screen" cell opens the dashboard
+in a browser tab *and* embeds it inline, so running the notebook reaches every other artefact.
+
+**The dashboard needs nothing** — no server, no network, no build. Click any row to inspect
+that route's carrier mix and Q4 history; the **Definitions** button explains every column.
+To open it on its own:
 
 ```bash
 open dashboard/index.html        # macOS

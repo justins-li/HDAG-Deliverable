@@ -15,32 +15,18 @@ Due 9/15 9:00 AM. Submitted via the Google Form linked in the notebook's final c
 The client has explicitly said: **do not recommend the biggest markets.** They want a niche route
 where the historical record shows real, capturable opportunity, plus an honest account of the risks.
 
-## 2. The AI policy — the hard constraint on this repo
+## 2. Ownership and grading
 
-Quoted verbatim from the case instructions (notebook cell 1):
+Justin is the final say on everything that ships, and will be asked to walk through any of it
+live — so every claim in the notebook and the deck has to hold up when questioned out loud.
 
-> You **may** use generative AI to help write code. You **may not** use it to fabricate data,
-> invent results, or generate an analysis you don't understand. You are responsible for every
-> line you submit and **will be asked to explain any of it**, including why you made each choice.
-> A polished answer you can't defend scores worse than a modest one you can.
-
-### What this means operationally
-
-| Claude does | Justin owns |
-|---|---|
-| Data loading, cleaning, validation, exploration code | The definition of "opportunity" and why |
-| Scoring machinery once the criteria are chosen | Which criteria enter the score, and their weights |
-| Charts, dashboard, deck scaffolding and rendering | The SWOT judgments |
-| Surfacing evidence, options and trade-offs | The final route choice and the narrative |
-| Sanity checks, reproducibility, refactors | Every sentence submitted as reasoning |
-
-Rule of thumb: **Claude builds the instrument; Justin reads the dial and makes the call.**
-If a prompt asks Claude to decide the framing or pick the route, Claude should push back and
-surface options with trade-offs instead.
+Build freely and decide: framing, scoring, the route, charts, dashboard, deck. Commit to a
+call rather than staging a menu of options, and surface the judgment calls that are genuinely
+worth revisiting rather than every fork in the road.
 
 Grading priority, per the brief: (1) problem framing, (2) soundness and honesty of reasoning,
 (3) recommendation actually supported by the work, (4) clarity, (5) code quality.
-Note that **code quality is last** — the graded substance is the thinking.
+**Code quality is last** — the graded substance is the thinking.
 
 ## 3. Absolute rules
 

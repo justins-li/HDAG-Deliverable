@@ -89,7 +89,35 @@ Consequences that must be handled explicitly:
 These are real, specific limitations — exactly what the brief asks for
 ("the data could be cleaner" is explicitly called out as not good enough).
 
-## 5. Working agreements
+## 5. Findings established (do not re-derive, do not contradict)
+
+**Framing.** Opportunity = *demand that already exists, on planes that are already full, on a
+route nobody owns.* Scored as the **Thin Air Index**: D (demand) · G (growth) · S (strain,
+= pax ÷ departures) · R (room, = 1 − HHI), each a percentile rank within the candidate pool.
+
+**Funnel.** 4,398 pairs → 873 material → 785 niche → 605 growing → 307 contestable → 5 → 1.
+
+**Recommendation: JFK ⇄ MAN (Manchester).** Verified numbers, Oct–Dec window:
+
+| | value |
+|---|---|
+| 2018 Q4 passengers / departures | 82,512 / 240 → 343.8 per departure |
+| 2019 Q4 passengers / departures | 56,277 / 176 → 319.8 per departure |
+| Thomas Cook (`MT`) 2018 share | 38,749 pax = 47% of route; absent 2019 |
+| Unserved Q4 demand | **26,235 passengers** |
+| Equivalent capacity | 76 departures / 92 days = **0.83 per day ≈ one rotation** |
+
+**TAI ranks LAX–HND first; JFK–MAN second.** LAX–HND is rejected *by hand* because Haneda's
+US slots are allocated government-to-government — a barrier "Room" cannot see, since it
+measures concentration only. **Never present JFK–MAN as the top-scoring route.** It ranks #1
+only under Strain-led, Room-led or capturability-led weightings; #2 equal; **#24 size-led**.
+That fragility is the sensitivity story, not something to hide.
+
+Two further traps already found, worth keeping: five-year HHI says JFK–MAN has room = 0.70,
+but its **2019 HHI is 1.00** (Virgin Atlantic monopoly); and `DY`/`DI` on LAX–LGW are both
+Norwegian Group, so HHI scores one airline as two competitors.
+
+## 6. Working agreements
 
 - Branch: `claude/vigilant-feynman-o5i3eq`. PR: justins-li/HDAG-Deliverable#1.
 - Keep the solution **short, sweet and creative** over sprawling. Budget for the case is 4–5 hours.

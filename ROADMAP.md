@@ -1,105 +1,102 @@
 # ROADMAP — Meridian Air Route Recommendation
 
-General guide, not a spec. Phases are ordered but overlap.
-**Before each work session, re-read `CLAUDE.md`.**
-
-Ownership legend: 🔧 **Build** (Claude may do) · 🧠 **Judgment** (Justin must own — see CLAUDE.md §2)
+**Status: Phases 0–6 complete.** Re-read `CLAUDE.md` before each work session.
 
 ---
 
-## Phase 0 — Foundation & data trust  ✅ done
-🔧 Load both CSVs, verify grain, validate `Scheduled+Charter=Total`, map month coverage.
+## Phase 0 — Foundation & data trust ✅
+Loaded both CSVs, verified grain (zero duplicate keys on Year·Month·usg_apt·fg_apt·carrier),
+confirmed `Scheduled + Charter = Total`, audited month coverage.
 
-**Outcome:** the month-window discovery (CLAUDE.md §4). Every later phase depends on it.
-Any analysis written before this was known is suspect and should be redone.
-
----
-
-## Phase 1 — Planning: frame the problem
-The most heavily weighted part of the case. Notebook Part 1.
-
-🧠 **Define "opportunity."** There is no target variable. Decide what makes a route attractive
-to a *small* carrier that gets exactly one rotation, and defend it. Write it in your own words.
-🧠 **SWOT** of Meridian's position — strengths/weaknesses internal, opportunities/threats
-environmental. Feeds directly into what the metric should reward.
-🔧 Compute whatever candidate signals the chosen definition implies, so the framing can be
-pressure-tested against real numbers before it's locked.
-
-**Design constraint from the client:** niche over mainstream. A metric that just ranks by
-volume will surface JFK–LHR and fail the brief on its face. The metric has to encode
-*capturability*, not just size.
-
-**Exit:** a written definition of opportunity + a SWOT, both defensible out loud.
+**Outcome — the load-bearing finding:** neither file contains full years.
+Passengers Sep–Dec → Aug–Dec (break at 2003); departures Oct–Dec → Sep–Dec (break at 2011).
+Everything downstream runs on a forced constant **Oct–Dec** window, the only one present in
+both files in every year. Details in `CLAUDE.md` §4.
 
 ---
 
-## Phase 2 — Candidates → shortlist → one route
-Notebook Part 2. The brief wants **the funnel, not just the endpoint**.
+## Phase 1 — Planning: frame the problem ✅
+**Opportunity = demand that already exists, on planes that are already full, on a route
+nobody owns.** Four dials — the **Thin Air Index**:
 
-🔧 Build the funnel mechanically: full route universe → filters → scored shortlist → finalists.
-Each narrowing step logged with how many routes survived and why.
-🧠 Choose the filters and thresholds, and justify each cut.
-🧠 Pick the single recommended route from the finalists.
+| Dial | Question | Measure |
+|---|---|---|
+| D — Demand | Is the market real? | Q4 passengers 2015–19 |
+| G — Growth | Is it getting bigger? | vs 2010–14 |
+| S — Strain | Are the planes full? | passengers ÷ departures |
+| R — Room | Can we get in? | 1 − HHI of carrier shares |
 
-**Exit:** a reproducible funnel table and one named route.
-
----
-
-## Phase 3 — Execution: the interactive dashboard
-The creative centerpiece. A simple local website (single HTML file, no server needed).
-
-🔧 Let the user move the weights/parameters of the opportunity score and watch the ranking
-re-order live. This does double duty:
-- it *shows* the framework rather than asserting it, and
-- it directly answers deliverable #6 — **"what single finding would have changed your
-  recommendation?"** becomes a thing the viewer can discover by dragging a slider until the
-  top-ranked route flips.
-
-🔧 Keep it visually simple; the insight is the interactivity, not the chrome.
-🧠 Decide which parameters are worth exposing.
-
-**Exit:** one self-contained `.html` that opens by double-click, plus the sensitivity finding
-it reveals.
+Each dial is a percentile rank within the candidate pool. SWOT is in the notebook and on
+slide 5; it is what justifies weighting S and R as heavily as D (no slots, no connecting feed).
 
 ---
 
-## Phase 4 — Assumptions, limitations, risks
-Notebook Part 3 / final markdown cell. Graded as "honesty of reasoning."
+## Phase 2 — Candidates → shortlist → one route ✅
 
-Required minimums: **≥3 assumptions, ≥2 limitations**, plus failure modes.
-🔧 Quantify sensitivity — how far can an input move before the answer changes?
-🧠 Write the assumptions and the honest account of how this could be wrong.
+```
+4,398  all airport pairs
+  873  material & scheduled   (>=50k Q4 pax, all 5 years, >=80% scheduled)
+  785  niche                  (drop top decile by volume — client instruction)
+  605  growing
+  307  contestable            (>=2 carriers, HHI <= 0.90 — removes hub fortresses)
+    5  shortlist
+    1  JFK–MAN
+```
 
-Already banked (CLAUDE.md §4): Q4-only coverage, the mid-series month step, the
-passengers/departures window mismatch. These are strong, specific limitations —
-good enough to satisfy the requirement on their own, but they need *your* framing of
-why each one matters to *this* recommendation.
-
----
-
-## Phase 5 — The deck (5 slides max)
-🔧 Render to PDF once the content is settled.
-🧠 All narrative and claims.
-
-Working shape (adjust freely):
-1. The question + the framing — what "opportunity" means, in one line
-2. The funnel — many → few → one
-3. The recommendation + quantified opportunity
-4. Sensitivity & risk — what would change the answer *(dashboard link here)*
-5. SWOT + limitations, deliberately airy with generous white space
-
-Deliverable requires **≥2 visualizations that genuinely support** the recommendation —
-not decoration.
+**The index shortlists; it does not decide.** TAI ranks LAX–HND first. Rejected by hand:
+Haneda's US slots are allocated government-to-government. "Room" measures concentration and
+cannot see a legal barrier. That override is stated openly rather than hidden by tuning weights.
 
 ---
 
-## Phase 6 — Ship
-🔧 Clean-kernel top-to-bottom run, export `.ipynb` + deck `.pdf`, verify the dashboard opens
-standalone. Upload both to the Google Form in the notebook's final cell.
+## Phase 3 — Execution: the dashboard ✅
+`dashboard/index.html` — self-contained, no server, no network. Four draggable dials,
+live re-ranking of all 307 candidates, three presets.
+
+It does double duty: it *shows* the framework instead of asserting it, and it makes
+deliverable #6 discoverable — drag toward **size** and JFK–MAN falls to #24, which is
+precisely the honest answer to "what would change your mind."
+Verified to match the notebook's sensitivity table exactly (#2 equal / #1 capturability-led /
+#24 size-led).
 
 ---
 
-### Sequencing note
-Phases 2–5 are all downstream of the Phase 1 framing. Locking the definition of opportunity
-first prevents rework — and it's the part that carries the most grading weight, so it deserves
-the most of the 4–5 hour budget.
+## Phase 4 — Assumptions, limitations, risks ✅
+Final notebook markdown cell: **4 assumptions, 6 limitations**, four failure modes, and the
+single finding that would overturn the recommendation (post-2019 evidence that Manchester
+capacity was restored). Requirement was ≥3 and ≥2.
+
+---
+
+## Phase 5 — The deck ✅
+`deck.html` → `Meridian_Air_Route_Recommendation.pdf`, **5 slides** (the maximum):
+
+1. The framing — Thin Air Index, the four dials
+2. The funnel — 4,398 → 5, and why LAX–HND is rejected
+3. The recommendation — JFK–MAN and the Thomas Cook vacancy
+4. Sensitivity — the weighting table, dashboard link, what would change our mind
+5. SWOT + limitations, with deliberate white space
+
+Three figures, all generated by the notebook and all load-bearing: the funnel, the capacity
+gap, and the strain/room scatter. Requirement was ≥2.
+
+---
+
+## Phase 6 — Ship ✅
+Notebook verified running clean top to bottom from a fresh kernel. PDF is 5 pages.
+Dashboard verified in a headless browser.
+
+**Remaining manual step:** upload the `.ipynb` and the `.pdf` to the Google Form linked in the
+notebook's final cell.
+
+⚠ **Before submitting:** `f24-hdag-data` is committed as a submodule gitlink with no
+`.gitmodules`, so a fresh clone gets an empty directory and cell 5's `git clone` is what
+populates it. Worth confirming that path works on a clean machine, since "runs top to bottom"
+is a stated requirement.
+
+---
+
+## The recommendation, in one line
+**JFK ⇄ Manchester.** Thomas Cook's September 2019 collapse vacated 47% of a proven, full
+route; 26,235 Q4 passengers of demonstrated demand went unserved, which at 2018 load factors
+is **0.83 departures per day — almost exactly the single rotation Meridian has been funded for.**

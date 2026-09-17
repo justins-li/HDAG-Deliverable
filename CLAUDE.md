@@ -27,8 +27,7 @@ so the notebook is the entry point to everything else.
 ## 2. How the work gets decided
 
 Justin is the last mirror: the final reader of what the data says and the one who carries the
-conclusions forward and answers for them. That is a recognition, not a gate. It doesn't mean
-deferring every judgment call to him or laying out menus instead of answers.
+conclusions forward and answers for them.
 
 So: build and decide. Pick the framing, choose the weights, commit to a route, write the
 narrative. Where a call is genuinely contestable, make it anyway and say plainly what would
